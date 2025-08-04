@@ -3,26 +3,9 @@ import AddTask from "./componentes/AddTask";
 import Tasks from "./componentes/Tasks";
 import { v4 } from "uuid";
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Estudar programação",
-      description: "15 de julho as 10:00",
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      title: "Fazer Compras",
-      description: "15 de julho as 15:00",
-      isCompleted: false,
-    },
-    {
-      id: 3,
-      title: "Ler um livro",
-      description: "15 de julho as 18:00",
-      isCompleted: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
