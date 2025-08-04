@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddTask from "./componentes/AddTask";
 import Tasks from "./componentes/Tasks";
 import { v4 } from "uuid";
@@ -23,6 +23,10 @@ function App() {
       isCompleted: false,
     },
   ]);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) => {
@@ -68,26 +72,3 @@ function App() {
 }
 
 export default App;
-
-/*
-exemplo de states
-
-
-import { useState } from "react";
-
-function App(){
-  const [message, setMessage] = useState("Olá,mundo!")
-  //State (Estado)
-  
-return(
-  <div>
-  <h1>{message}</h1>
-  <button onClick={() => {
-    setMessage("Olá, fui clicado");
-  }}>Mudar mensagem</button>
-  </div>
-);
-}
-
-export default App
-*/
